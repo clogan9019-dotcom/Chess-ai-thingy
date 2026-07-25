@@ -1,0 +1,18 @@
+{
+  "stockfish_path": "stockfish",
+  "stockfish_skill_level": 8,
+  "stockfish_move_time_seconds": 0.75,
+  "ai_color": "white",
+  "opencode_executable": "opencode",
+  "opencode_model": "ollama/qwen3:8b",
+  "opencode_temperature": 0.2,
+  "ollama_context_size": 16384,
+  "max_opencode_thinking_time_seconds": 180,
+  "max_opencode_turn_retries": 3,
+  "move_delay_seconds": 0.5,
+  "web_host": "127.0.0.1",
+  "web_port": 8765,
+  "auto_save_directory": "games",
+  "initial_fen": null,
+  "opencode_server_url": null
+}

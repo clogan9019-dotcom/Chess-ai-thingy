@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "chess": {
+        "type": "local",
+        "command": [".\\.venv\\Scripts\\python.exe", "-m", "opencode_chess.mcp_server"],
+        "cwd": ".",
+        "environment": {
+          "OPENCODE_CHESS_URL": "{env:OPENCODE_CHESS_URL}"
+        },
+        "timeout": 15000
+      }
+    }
+  }
+}
