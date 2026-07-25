@@ -1,0 +1,25 @@
+// Merge the provider section into your existing OpenCode global config if Ollama
+// is not already configured. Replace qwen3:8b with `ollama list` output.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1",
+        "apiKey": "ollama"
+      },
+      "models": {
+        "qwen3:8b": {
+          "name": "Qwen3 8B (local)",
+          "tools": true,
+          "reasoning": true,
+          "limit": {
+            "context": 16384
+          }
+        }
+      }
+    }
+  }
+}

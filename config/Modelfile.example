@@ -1,0 +1,4 @@
+# Create a local Ollama model with the context window required by config/game.json.
+# Change qwen3:8b to the model installed by `ollama list`.
+FROM qwen3:8b
+PARAMETER num_ctx 16384

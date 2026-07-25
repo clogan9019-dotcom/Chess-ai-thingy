@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenCode vs Stockfish</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">LOCAL AUTONOMOUS MATCH</p>
+        <h1>OpenCode <span>vs</span> Stockfish</h1>
+        <p class="subhead">A live board driven by Chess MCP — no browser chess automation.</p>
+      </div>
+      <div id="connection" class="connection"><i></i> Connecting</div>
+    </header>
+
+    <section class="status-strip" aria-live="polite">
+      <div class="turn-card"><span class="label">NOW</span><strong id="now-playing">Waiting for game</strong><small id="status-message">Starting local dashboard…</small></div>
+      <div class="status-divider"></div>
+      <div class="turn-card compact"><span class="label">RESULT</span><strong id="result">—</strong><small id="check-status">—</small></div>
+      <div class="status-divider"></div>
+      <div class="turn-card compact"><span class="label">GAME TIME</span><strong id="elapsed">00:00</strong><small id="move-count">0 plies</small></div>
+    </section>
+
+    <section class="game-layout">
+      <aside class="left-rail">
+        <div class="player-card stockfish-card">
+          <div class="avatar engine">SF</div>
+          <div><p id="stockfish-color">BLACK / ENGINE</p><h2>Stockfish</h2><small id="stockfish-detail">Skill —</small></div>
+        </div>
+        <div class="captured"><p class="label">CAPTURED BY STOCKFISH</p><div id="captured-black" class="piece-row">—</div></div>
+        <div class="eval-card">
+          <div class="eval-label"><span>WHITE</span><strong id="eval-text">±0.00</strong><span>BLACK</span></div>
+          <div class="evaluation"><div id="eval-fill" class="eval-fill"></div></div>
+          <p id="eval-note">Evaluation appears after Stockfish makes its first move.</p>
+        </div>
+      </aside>
+
+      <section class="board-column">
+        <div class="board-wrap">
+          <div id="board" class="board" aria-label="Live chess board" role="img"></div>
+        </div>
+        <div class="board-footer"><span id="fen-short">FEN unavailable</span><button id="flip-board" class="link-button">Flip board</button></div>
+      </section>
+
+      <aside class="right-rail">
+        <div class="player-card opencode-card">
+          <div class="avatar ai">OC</div>
+          <div><p id="opencode-color">WHITE / AI</p><h2>OpenCode</h2><small id="model-name">Model —</small></div>
+        </div>
+        <div class="thinking-box">
+          <div class="thinking-head"><span class="pulse"></span><p>OPENCODE THINKING</p><strong id="thinking-time">—</strong></div>
+          <p id="reasoning">OpenCode reasoning will be saved here after its first submitted move.</p>
+          <div id="candidates" class="candidate-list"></div>
+          <p id="token-usage" class="token-usage">Token usage is shown when exposed by your OpenCode CLI.</p>
+        </div>
+        <div class="captured"><p class="label">CAPTURED BY OPENCODE</p><div id="captured-white" class="piece-row">—</div></div>
+      </aside>
+    </section>
+
+    <section class="bottom-grid">
+      <article class="panel moves-panel">
+        <div class="panel-title"><h2>Move history</h2><span id="history-count">0 moves</span></div>
+        <div id="moves" class="moves"></div>
+      </article>
+      <article class="panel control-panel">
+        <div class="panel-title"><h2>Match controls</h2><span>Moves remain autonomous</span></div>
+        <div class="control-fields">
+          <label>OpenCode side<select id="color-select"><option value="white">White</option><option value="black">Black</option></select></label>
+          <label>Stockfish skill <select id="skill-select"></select></label>
+        </div>
+        <div class="button-grid">
+          <button id="new-game" class="primary">New / restart game</button>
+          <button id="pause">Pause</button>
+          <button id="resume">Resume</button>
+          <button id="undo">Undo last ply</button>
+          <a class="button" href="/api/pgn" download="opencode-vs-stockfish.pgn">Download PGN</a>
+          <button id="resign" class="danger">OpenCode resigns</button>
+        </div>
+        <p class="control-hint">Changing side or skill takes effect when you start a new game. Controls never enter a chess move manually.</p>
+      </article>
+      <article class="panel activity-panel">
+        <div class="panel-title"><h2>Automation activity</h2><span id="state-badge" class="state-badge">idle</span></div>
+        <pre id="activity">Waiting for the autonomous runner…</pre>
+      </article>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
